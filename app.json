@@ -1,0 +1,12 @@
+{
+  "name": "DOTAHeroes",
+  "displayName": "DOTAHeroes",
+  "expo": {
+    "name": "DOTAHeroes",
+    "slug": "DOTAHeroes",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
