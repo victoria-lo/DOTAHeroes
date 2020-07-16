@@ -4,21 +4,19 @@ import { SearchBar } from 'react-native-elements';
 import React, { useState, useEffect } from 'react';
 
 export default function App() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
-  const [regex, setRegex] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  //const [heroes, setHeroes] = useState([]);
  
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [query]);
 
   const fetchData = async () => {
-    setIsLoading(true);
     const res = await fetch('https://api.opendota.com/api/heroes');
     const json = await res.json();
     setData(json);
-    setIsLoading(false);
+    //setHeroes(json.slice());
   };
   
 
@@ -28,11 +26,15 @@ export default function App() {
         let heroName = hero.name.charAt(14).toUpperCase() + hero.name.slice(15);
         heroName = heroName.replace(/_/g, " ");
         return heroName;
-      }else return null;
+      }else{ 
+        data.splice(data.indexOf(hero), 1);
+        return null;
+      }
   }
 
-  const updateQuery = (query) => {
-    setQuery(query);
+  const updateQuery = (input) => {
+    //setHeroes(data.slice());
+    setQuery(input);
   }
 
   return (
@@ -43,7 +45,7 @@ export default function App() {
           value={query}   
           placeholder="Type Here..."
       />
-      <FlatList data={data} keyExtractor = {(x,i)=>i} extraData = {query} 
+      <FlatList data={data} keyExtractor = {(i)=>i.id.toString()} extraData = {query} 
       renderItem = {({item}) =>
         <Text style={styles.flatList}>{formatNames(item)}
         </Text>} />
