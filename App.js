@@ -6,34 +6,39 @@ import React, { useState, useEffect } from 'react';
 export default function App() {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
-  //const [heroes, setHeroes] = useState([]);
+  const [heroes, setHeroes] = useState([]);
  
   useEffect(() => {
     fetchData();
-  }, [query]);
+  }, []);
 
   const fetchData = async () => {
     const res = await fetch('https://api.opendota.com/api/heroes');
     const json = await res.json();
     setData(json);
-    //setHeroes(json.slice());
+    setHeroes(json.slice());
   };
   
 
-  const formatNames = (hero) => {
+  const filterNames = (hero) => {
+    console.log(heroes.length);
       let search = query.toLowerCase().replace(/ /g,"_");
       if(hero.name.startsWith(search, 14)){
-        let heroName = hero.name.charAt(14).toUpperCase() + hero.name.slice(15);
-        heroName = heroName.replace(/_/g, " ");
-        return heroName;
+        return formatNames(hero);
       }else{ 
-        data.splice(data.indexOf(hero), 1);
+        heroes.splice(heroes.indexOf(hero), 1);
         return null;
       }
   }
 
+  const formatNames = (hero) =>{
+    let heroName = hero.name.charAt(14).toUpperCase() + hero.name.slice(15);
+    heroName = heroName.replace(/_/g, " ");
+    return heroName;
+  }
+
   const updateQuery = (input) => {
-    //setHeroes(data.slice());
+    setHeroes(data.slice());
     setQuery(input);
   }
 
@@ -45,9 +50,9 @@ export default function App() {
           value={query}   
           placeholder="Type Here..."
       />
-      <FlatList data={data} keyExtractor = {(i)=>i.id.toString()} extraData = {query} 
+      <FlatList data={heroes} keyExtractor = {(i)=>i.id.toString()} extraData = {query} 
       renderItem = {({item}) =>
-        <Text style={styles.flatList}>{formatNames(item)}
+        <Text style={styles.flatList}>{filterNames(item)}
         </Text>} />
     </View>
   );
