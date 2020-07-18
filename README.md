@@ -1,6 +1,8 @@
 # DOTAHeroes
 React Native App to display, search and show DOTA heroes using Hooks
 
+<img src= https://github.com/victoria-lo/DOTAHeroes/blob/master/final.gif/>
+
 
 Used for the tutorial post at: 
 
