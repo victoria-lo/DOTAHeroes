@@ -50,10 +50,11 @@ export default function App() {
           value={query}   
           placeholder="Type Here..."
       />
-      <FlatList data={heroes} keyExtractor = {(i)=>i.id.toString()} extraData = {query} 
-      renderItem = {({item}) =>
-        <Text style={styles.flatList}>{filterNames(item)}
-        </Text>} />
+      <FlatList data={heroes} keyExtractor = {(i)=>i.id.toString()}
+        extraData = {query} 
+        renderItem = {({item}) =>
+          <Text style={styles.flatList}>{filterNames(item)}
+          </Text>} />
     </View>
   );
 }
