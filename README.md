@@ -4,7 +4,8 @@ React Native App to fetch, search and display DOTA heroes using Hooks
 <img src= https://github.com/victoria-lo/DOTAHeroes/blob/master/final.gif/>
 
 
-Used for the tutorial post at: 
+# Tutorial on how I built it
+https://lo-victoria.com/build-a-custom-autocomplete-search-bar-with-react-hooks-ckczetyga002s95s18knl30br
 
 ## Resources
 - [FlatList Documentation](https://reactnative.dev/docs/flatlist) from React Native 
